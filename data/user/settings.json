@@ -1,0 +1,33 @@
+{
+    "appearance": {
+        "notes_per_page": 10,
+        "show_sharing_buttons": true
+    },
+    "comments": {
+        "fresh_only": true,
+        "default_on": true
+    },
+    "max-image-width": 2560,
+    "db": {
+        "server": "db",
+        "user_name": "root",
+        "passw": "mp7RlzRnSKicp3rO2pprZElEptSTj8Sx",
+        "name": "blogengine"
+    },
+    "timezone": {
+        "offset": 10800,
+        "is_dst": false
+    },
+    "template": "plain",
+    "language": "en",
+    "user": {
+        "email": "remarr@gmail.com"
+    },
+    "notifications": {
+        "new_comments": true
+    },
+    "site_title": "Passionflower",
+    "description": "Блог о страсти к программи&shy;рованию, дизайну и путешествиям\r\n\r\n◂ ((https:\/\/m4rr.ru m4rr.ru))  •  ((https:\/\/m4rr.ru\/cv резюме))  •  ((https:\/\/medium.com\/@m4rr medium)) in english",
+    "author": "Марат Сайтаков",
+    "v3223_rss_permalinks_before_stamp": 1512822774
+}

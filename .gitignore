@@ -1,0 +1,17 @@
+# Specify filepatterns you want git to ignore.
+
+data/audio/
+data/pictures/
+
+data/user/
+data/user/settings.json
+data/user/password*
+data/user/caches/
+
+*.psa
+
+mysql*
+
+config/dump
+
+.env
