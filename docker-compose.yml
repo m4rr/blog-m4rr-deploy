@@ -44,6 +44,6 @@ services:
       # - ./config/php/uploads.ini:/etc/php7.2/apache/uploads.ini:ro
       - ./config/php/vhost.conf:/etc/apache2/sites-enabled/000-blog.m4rr.ru.conf
       # - /apache/logs:/var/log/apache/
-      - /apache2/logs:/var/log/apache2/
+      - ~/apache2/logs:/var/log/apache2/
     environment:
       - VIRTUAL_HOST=blog.m4rr.ru
