@@ -28,7 +28,7 @@ services:
   blog:
     restart: unless-stopped
     # build: .
-    image: m4rr/blogengine-docker
+    image: m4rr/blogengine-docker:latest
     depends_on:
       - db
     # ports:
