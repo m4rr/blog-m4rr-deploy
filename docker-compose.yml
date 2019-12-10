@@ -27,12 +27,9 @@ services:
 
   blog:
     restart: unless-stopped
-    # build: .
     image: m4rr/blogengine-docker:latest
     depends_on:
       - db
-    # ports:
-      # - "8081:80"
     volumes:
       # - ./data:/home/data
       - ./data/audio:/var/www/html/audio
@@ -44,6 +41,7 @@ services:
       - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       # - ./config/php/uploads.ini:/etc/php7.2/apache/uploads.ini:ro
       - ./config/php/vhost.conf:/etc/apache2/sites-enabled/000-blog.m4rr.ru.conf
-      - /apache/logs:/var/log/apache/
+      # - /apache/logs:/var/log/apache/
+      - /apache/logs:/var/log/apache2/
     environment:
       - VIRTUAL_HOST=blog.m4rr.ru

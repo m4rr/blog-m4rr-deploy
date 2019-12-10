@@ -3,7 +3,7 @@
 data/audio/
 data/pictures/
 
-data/user/
+# data/user/
 data/user/settings.json
 data/user/password*
 data/user/caches/
