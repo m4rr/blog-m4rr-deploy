@@ -4,3 +4,7 @@
 и путешествиям
 
 ◂ [m4rr.ru](https://m4rr.ru)  •  [резюме](https://m4rr.ru/cv)  •  [medium](https://medium.com/@m4rr) in En
+
+## To Update Blogengine
+
+`docker-compose up --force-recreate --build -d`
