@@ -1,12 +1,15 @@
 {
     "appearance": {
-        "notes_per_page": 10,
-        "show_sharing_buttons": true
-    },
+        "notes_per_page": 11,
+        "show_sharing_buttons": false,
+        "respond_to_dark_mode": true,
+        "show_view_counts": false
+},
     "comments": {
         "fresh_only": true,
-        "default_on": true
-    },
+        "default_on": true,
+        "require_gip": false
+},
     "max-image-width": 2560,
     "db": {
         "server": "db",
@@ -19,7 +22,7 @@
         "is_dst": false
     },
     "template": "plain",
-    "language": "en",
+    "language": "ru",
     "user": {
         "email": "remarr@gmail.com"
     },
@@ -27,7 +30,7 @@
         "new_comments": true
     },
     "site_title": "Passionflower",
-    "description": "Блог о страсти к программи&shy;рованию, дизайну и путешествиям\r\n\r\n◂ ((https:\/\/m4rr.ru m4rr.ru))  •  ((https:\/\/m4rr.ru\/cv резюме))  •  ((https:\/\/medium.com\/@m4rr medium)) in english",
+    "description": "Блог о страсти к программи&#173;рованию и путешествиям\r\n\r\n◂ ((https:\/\/m4rr.ru m4rr.ru))  •  ((https:\/\/m4rr.ru\/cv резюме \/  CV))  •  En ((https:\/\/medium.com\/@m4rr Medium))  •  ((tg:\/\/resolve?domain=CitoyenMarat телеканал))",
     "author": "Марат Сайтаков",
     "v3223_rss_permalinks_before_stamp": 1512822774
 }
