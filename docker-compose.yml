@@ -26,8 +26,15 @@ services:
     #   - "3306:3306"
 
   blog:
-    restart: unless-stopped
+    restart: always
     image: m4rr/blogengine-docker:latest
+    labels: 
+      - traefik.enable=true
+      
+      # - traefik.http.routers.m4rr-ru.entrypoints=http
+      - traefik.http.routers.blog-m4rr-ru.rule=Host(`blog.m4rr.ru`)
+    networks: 
+      - traefik
     environment:
       APACHE_LOG_DIR: "/var/log/apache2"
     depends_on:
@@ -45,5 +52,10 @@ services:
       - ./config/php/vhost.conf:/etc/apache2/sites-enabled/000-blog.m4rr.ru.conf
       # - /apache/logs:/var/log/apache/
       - ~/apache2/logs:/var/log/apache2/
-    environment:
-      - VIRTUAL_HOST=blog.m4rr.ru
+    # environment:
+    #   - VIRTUAL_HOST=blog.m4rr.ru
+
+networks: 
+  traefik:
+    external: 
+      name: traefik
