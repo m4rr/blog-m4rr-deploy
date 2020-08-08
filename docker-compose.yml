@@ -24,18 +24,28 @@ services:
     # command: --character-set-server=utf8 --collation-server=utf8_general_ci --default-authentication-plugin=mysql_native_password
     # ports:
     #   - "3306:3306"
+    networks:
+      - backend
 
   blog:
     restart: unless-stopped
     image: m4rr/blogengine-docker:latest
-    labels: 
-      - traefik.enable=true
-      
-      - traefik.http.routers.blog.entrypoints=http
-      - traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`)
-      # - traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`) || Host(`m4rr.ru`) && Path(`/blog/`)
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.blog.entrypoints=http"
+      #- "traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`)"
+      - "traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`) || Host(`m4rr.ru`) && Path(`/blog/`)"
+      - "traefik.http.routers.blog.service=blog@docker"
+
+      - "traefik.http.services.blog.loadbalancer.passhostheader=true"
+
+      - "traefik.http.middlewares.blog-strip-prefix.stripprefix.prefixes=/blog"
+      - "traefik.http.routers.blog.middlewares=blog-strip-prefix@docker"
+
     networks: 
       - traefik
+      - backend
     environment:
       VIRTUAL_HOST: blog.m4rr.ru
       APACHE_LOG_DIR: /var/log/apache2
@@ -59,3 +69,5 @@ networks:
   traefik:
     external: 
       name: traefik
+  backend:
+    internal: true

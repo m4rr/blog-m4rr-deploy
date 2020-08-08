@@ -5,6 +5,7 @@ data/pictures/
 
 # data/user/
 data/user/settings.json
+settings.json
 data/user/password*
 data/user/caches/
 
