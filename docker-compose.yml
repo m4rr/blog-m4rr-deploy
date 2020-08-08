@@ -32,7 +32,7 @@ services:
       - traefik.enable=true
       
       # - traefik.http.routers.m4rr-ru.entrypoints=http
-      - traefik.http.routers.blog-m4rr-ru.rule=Host(`blog.m4rr.ru`)
+      - traefik.http.routers.blog-m4rr-ru.rule=Host(`m4rr.ru`) && Path(`/blog`)
     networks: 
       - traefik
     environment:
