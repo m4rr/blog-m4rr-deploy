@@ -36,8 +36,8 @@ services:
     networks: 
       - traefik
     environment:
-      - VIRTUAL_HOST=blog.m4rr.ru
-      - APACHE_LOG_DIR="/var/log/apache2"
+      VIRTUAL_HOST: blog.m4rr.ru
+      APACHE_LOG_DIR: /var/log/apache2
     depends_on:
       - db
     volumes:
