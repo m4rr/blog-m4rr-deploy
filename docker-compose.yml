@@ -40,8 +40,8 @@ services:
 
       - "traefik.http.services.blog.loadbalancer.passhostheader=true"
 
-      - "traefik.http.middlewares.blog-strip-prefix.stripprefix.prefixes=/blog"
-      - "traefik.http.routers.blog.middlewares=blog-strip-prefix@docker"
+      # - "traefik.http.middlewares.blog-strip-prefix.stripprefix.prefixes=/blog"
+      # - "traefik.http.routers.blog.middlewares=blog-strip-prefix@docker"
 
     networks: 
       - traefik
