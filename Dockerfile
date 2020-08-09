@@ -3,7 +3,7 @@ LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 
 # -
 
-FROM php:fpm-alpine3.12
+FROM php:7.4-fpm-alpine
 LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 
 RUN mkdir -p /var/www/html
