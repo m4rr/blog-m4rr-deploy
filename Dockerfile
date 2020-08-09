@@ -3,13 +3,13 @@ LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 
 # -
 
-FROM httpd:2.4-alpine # php:7.1-apache
+FROM php:7.3-apache
 LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 
 RUN mkdir -p /var/www/html
 COPY --from=AEGEA /blogengine /var/www/html
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
       freetype \
       libjpeg-turbo \
       libpng \
