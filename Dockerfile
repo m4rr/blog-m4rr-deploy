@@ -9,4 +9,6 @@ LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 RUN mkdir -p /var/www/html
 COPY --from=AEGEA /blogengine /var/www/html
 
+RUN service apache2 restart
+
 EXPOSE 80
