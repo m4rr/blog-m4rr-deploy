@@ -67,10 +67,8 @@ services:
 
   blog2:
     restart: unless-stopped
-    build: 
-      privileged: true
-      context: .
-      dockerfile: Dockerfile
+    privileged: true
+    build: .
     labels:
       - "traefik.enable=true"
 
