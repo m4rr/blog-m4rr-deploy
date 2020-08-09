@@ -12,7 +12,7 @@ COPY --from=AEGEA /blogengine /var/www/html
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
-
+        \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
         libonig-dev \
         graphviz \
         mbstring \
-
+    \
     && docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql \
