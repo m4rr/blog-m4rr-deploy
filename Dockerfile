@@ -9,26 +9,27 @@ LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 RUN mkdir -p /var/www/html
 COPY --from=AEGEA /blogengine /var/www/html
 
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN apt-get update -y && apt-get install -y \
-    libwebp-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libmcrypt-dev \
-    libfreetype6-dev 
-# RUN apt-get update && \
-#     apt-get install -y \
-#         zlib1g-dev 
 
-RUN docker-php-ext-install mbstring
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
 
-RUN apt-get install -y libzip-dev
-RUN docker-php-ext-install zip 
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        zlib1g-dev \
+        libxml2-dev \
+        libzip-dev \
+        libonig-dev \
+        graphviz \
+        mbstring \
 
-RUN docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
-    --with-png-dir --with-freetype-dir 
-
-RUN docker-php-ext-install gd
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install mbstring \
+    && docker-php-source delete
 
 RUN a2enmod rewrite
 RUN a2enmod proxy
