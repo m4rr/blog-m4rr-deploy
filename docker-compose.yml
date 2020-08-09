@@ -27,47 +27,50 @@ services:
     networks:
       - backend
 
-  blog:
-    restart: unless-stopped
-    build: .
-    labels:
-      - "traefik.enable=true"
+  # blog:
+  #   restart: unless-stopped
+  #   build: .
+  #   labels:
+  #     - "traefik.enable=true"
 
-      - "traefik.http.routers.blog.entrypoints=http"
-      - "traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`)"
-      # - "traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`) || Host(`m4rr.ru`) && PathPrefix(`/blog/`)"
-      - "traefik.http.routers.blog.service=blog@docker"
+  #     - "traefik.http.routers.blog.entrypoints=http"
+  #     - "traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`)"
+  #     # - "traefik.http.routers.blog.rule=Host(`blog.m4rr.ru`) || Host(`m4rr.ru`) && PathPrefix(`/blog/`)"
+  #     - "traefik.http.routers.blog.service=blog@docker"
 
-      - "traefik.http.services.blog.loadbalancer.passhostheader=true"
+  #     - "traefik.http.services.blog.loadbalancer.passhostheader=true"
 
-      # - "traefik.http.middlewares.blog-strip-prefix.stripprefix.prefixes=/blog"
-      # - "traefik.http.routers.blog.middlewares=blog-strip-prefix@docker"
+  #     # - "traefik.http.middlewares.blog-strip-prefix.stripprefix.prefixes=/blog"
+  #     # - "traefik.http.routers.blog.middlewares=blog-strip-prefix@docker"
 
-    networks: 
-      - traefik
-      - backend
-    environment:
-      VIRTUAL_HOST: blog.m4rr.ru
-      APACHE_LOG_DIR: /var/log/apache2
-    depends_on:
-      - db
-    volumes:
-      - ./data/audio:/var/www/html/audio
-      - ./data/pictures:/var/www/html/pictures
-      - ./data/user:/var/www/html/user
+  #   networks: 
+  #     - traefik
+  #     - backend
+  #   environment:
+  #     VIRTUAL_HOST: blog.m4rr.ru
+  #     APACHE_LOG_DIR: /var/log/apache2
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./data/audio:/var/www/html/audio
+  #     - ./data/pictures:/var/www/html/pictures
+  #     - ./data/user:/var/www/html/user
 
-      - ./data/static/favicon.ico:/var/www/html/favicon.ico
+  #     - ./data/static/favicon.ico:/var/www/html/favicon.ico
 
-      - ./config/php/php.ini-production:/usr/local/etc/php/php.ini
-      - ./config/php/settings.ini:/usr/local/etc/php/conf.d/settings.ini
-      - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-      - ./config/php/vhost.conf:/etc/apache2/sites-enabled/000-blog.m4rr.ru.conf
+  #     - ./config/php/php.ini-production:/usr/local/etc/php/php.ini
+  #     - ./config/php/settings.ini:/usr/local/etc/php/conf.d/settings.ini
+  #     - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+  #     - ./config/php/vhost.conf:/etc/apache2/sites-enabled/000-blog.m4rr.ru.conf
 
-      - ~/apache2/logs:/var/log/apache2/
+  #     - ~/apache2/logs:/var/log/apache2/
 
   blog2:
     restart: unless-stopped
-    build: .
+    build: 
+      privileged: true
+      context: .
+      dockerfile: Dockerfile
     labels:
       - "traefik.enable=true"
 
