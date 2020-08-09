@@ -3,32 +3,29 @@ LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 
 # -
 
-FROM php:7.4-fpm-alpine
+FROM php:7.4-apache
 LABEL maintainer "Marat Saytakov <remarr+docker@gmail.com>"
 
 RUN mkdir -p /var/www/html
 COPY --from=AEGEA /blogengine /var/www/html
 
-RUN apk add --no-cache  \
-      freetype \
-      libjpeg-turbo \
-      libpng \
-      freetype-dev \
-      libjpeg-turbo-dev \
-      libpng-dev \
-    && docker-php-ext-configure gd \
-      --with-freetype=/usr/include/ \
-      # --with-png=/usr/include/ \ # No longer necessary as of 7.4; https://github.com/docker-library/php/pull/910#issuecomment-559383597
-      --with-jpeg=/usr/include/ \
-    && docker-php-ext-configure mcrypt \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-enable gd \
-    && apk del --no-cache \
-      freetype-dev \
-      libjpeg-turbo-dev \
-      libpng-dev \
-      mbstring mysqli pdo_mysql zip mcrypt\
-    && rm -rf /tmp/*
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt-get update -y && apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
+    libfreetype6-dev
+RUN apt-get update && \
+    apt-get install -y \
+        zlib1g-dev 
+
+RUN docker-php-ext-install mbstring
+
+RUN apt-get install -y libzip-dev
+RUN docker-php-ext-install zip
+
+RUN docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir \
+    --with-png-dir --with-zlib-dir --with-xpm-dir --with-freetype-dir \
+    --enable-gd-native-ttf
+
+RUN docker-php-ext-install gd
 
 RUN a2enmod rewrite
 RUN a2enmod proxy
