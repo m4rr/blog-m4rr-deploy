@@ -67,7 +67,7 @@ services:
 
   blog2:
     restart: unless-stopped
-    image: m4rr/blogengine-docker:latest
+    build: .
     labels:
       - "traefik.enable=true"
 
