@@ -29,7 +29,7 @@ services:
 
   blog:
     restart: unless-stopped
-    image: m4rr/blogengine-docker:latest
+    build: .
     labels:
       - "traefik.enable=true"
 
@@ -68,8 +68,6 @@ services:
   blog2:
     restart: unless-stopped
     image: m4rr/blogengine-docker:latest
-    command: 
-      - "a2enmod proxy_http"
     labels:
       - "traefik.enable=true"
 
