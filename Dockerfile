@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
-        zlib1g-dev \
-        libxml2-dev \
+        # zlib1g-dev \
+        # libxml2-dev \
         libzip-dev \
     \
     && docker-php-ext-configure gd \
